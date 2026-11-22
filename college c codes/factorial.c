@@ -1,7 +1,7 @@
 #include <stdio.h>
 long long calculate_factorial(int n) {
     if (n < 0) {
-        return -1; // Indicates error for negative numbers
+        return -1;
     }
     
     long long result = 1;
