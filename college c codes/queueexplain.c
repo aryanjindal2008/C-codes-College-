@@ -9,24 +9,24 @@ typedef struct {
     int count;
 } Queue;
 
-/* Initialize queue to empty state */
+
 void initQueue(Queue *q) {
     q->front = 0;
     q->rear = -1;
     q->count = 0;
 }
 
-/* Check whether queue has no elements */
+
 bool isEmpty(const Queue *q) {
     return q->count == 0;
 }
 
-/* Check whether queue has reached MAX capacity */
+
 bool isFull(const Queue *q) {
     return q->count == 5;
 }
 
-/* Insert an element at the rear (FIFO) */
+
 bool enqueue(Queue *q, int value) {
     if (isFull(q)) {
         printf("Queue Overflow: cannot enqueue %d (queue is full)\n", value);
@@ -38,7 +38,6 @@ bool enqueue(Queue *q, int value) {
     return true;
 }
 
-/* Remove and return the front element (FIFO) */
 bool dequeue(Queue *q, int *removedValue) {
     if (isEmpty(q)) {
         printf("Queue Underflow: cannot dequeue (queue is empty)\n");
@@ -50,7 +49,6 @@ bool dequeue(Queue *q, int *removedValue) {
     return true;
 }
 
-/* Inspect the front element without removing it */
 bool peek(const Queue *q, int *frontValue) {
     if (isEmpty(q)) {
         printf("Queue is empty: nothing at front\n");
@@ -60,7 +58,6 @@ bool peek(const Queue *q, int *frontValue) {
     return true;
 }
 
-/* Display elements from front to rear in FIFO order */
 void displayQueue(const Queue *q) {
     if (isEmpty(q)) {
         printf("Queue is empty.\n");
@@ -81,7 +78,7 @@ int main(void) {
     enqueue(&q, 10);
     enqueue(&q, 20);
     enqueue(&q, 30);
-    displayQueue(&q); // Queue (front -> rear): 10 20 30
+    displayQueue(&q); 
 
     int value;
     if (peek(&q, &value)) {
@@ -91,18 +88,18 @@ int main(void) {
     if (dequeue(&q, &value)) {
         printf("Dequeued: %d\n", value); // 10
     }
-    displayQueue(&q); // Queue (front -> rear): 20 30
+    displayQueue(&q); 
 
     enqueue(&q, 40);
     enqueue(&q, 50);
-    enqueue(&q, 60); // Wraps around cleanly
-    enqueue(&q, 70); // Triggers Queue Overflow (MAX = 5)
-    displayQueue(&q); // Queue (front -> rear): 20 30 40 50 60
+    enqueue(&q, 60); 
+    enqueue(&q, 70); 
+    displayQueue(&q); 
 
     while (dequeue(&q, &value)) {
         printf("Dequeued: %d\n", value);
     }
-    dequeue(&q, &value); // Triggers Queue Underflow
+    dequeue(&q, &value); 
 
     return 0;
 }
